@@ -27,15 +27,9 @@ function App() {
       <NavBar />
       <HeroSection />
       <div className="sectionWrapper">
-        {topAlbumData.length > 0 && (
-          <Section type="album" title="Top Albums" data={topAlbumData} />
-        )}
-        {newAlbumData.length > 0 && (
-          <Section type="album" title="New Albums" data={newAlbumData} />
-        )}
-        {songsData.length > 0 && (
-          <Section type="song" title="Songs" data={songsData} />
-        )}
+        <Section type="album" title="Top Albums" data={topAlbumData} />
+        <Section type="album" title="New Albums" data={newAlbumData} />
+        <Section type="song" title="Songs" data={songsData} />
       </div>
     </div>
   );
