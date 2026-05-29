@@ -5,16 +5,18 @@ import styles from "./Section.module.css";
 import Carousal from "../Carousal/Carousal";
 
 const Section = ({ title, data, type }) => {
-  const [carosalToggle, setCarosalToggle] = useState();
+  const [carosalToggle, setCarosalToggle] = useState(false);
+
   const handleToggle = () => {
     setCarosalToggle(!carosalToggle);
   };
+
   return (
     <div>
       <div className={styles.header}>
         <h3>{title}</h3>
         <h4 className={styles.toggleText} onClick={handleToggle}>
-          {carosalToggle ? "Show all" : "Collapse all"}
+          {carosalToggle ? "Collapse all" : "Show all"}
         </h4>
       </div>
       {data.length === 0 ? (
@@ -22,13 +24,18 @@ const Section = ({ title, data, type }) => {
       ) : (
         <div className={styles.cardWrapper}>
           {!carosalToggle ? (
-            <div className={styles.wrapper} >
+            <div className={styles.wrapper}>
               {data.map((item) => (
                 <Card key={item.id} data={item} type={type} />
               ))}
             </div>
           ) : (
-            <Carousal renderCardComponent={(item)=> <Card key={item.id} data={item} type={type} />} />
+            <Carousal
+              data={data}
+              renderCardComponent={(item) => (
+                <Card key={item.id} data={item} type={type} />
+              )}
+            />
           )}
         </div>
       )}
